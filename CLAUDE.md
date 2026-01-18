@@ -18,7 +18,7 @@ npm run preview  # Preview production build locally
 
 **Content Collections** (`src/content.config.ts`):
 - `blog` - Blog posts with title, description, pubDate, heroImage
-- `exercises` - Exercise guides with name, category (Strength/Cardio/Core/Flexibility/Compound), muscleGroups, difficulty (Beginner/Intermediate/Advanced), equipment
+- `exercises` - Exercise guides with name, category (Strength/Cardio/Core/Flexibility/Compound), muscleGroups, difficulty (Beginner/Intermediate/Advanced), equipment, icon (required)
 
 **Key Configuration** (`astro.config.mjs`):
 - Base path is `/x-db` - all internal links must use `${import.meta.env.BASE_URL}` prefix
@@ -32,8 +32,8 @@ npm run preview  # Preview production build locally
 - `/blog/[slug]/` - Individual blog post
 
 **Styling**:
-- Tailwind CSS with glassmorphism design (`glass`, `glass-card` classes in `src/styles/global.css`)
-- Dark mode support via class toggling on `<html>`
+- Tailwind CSS with glassmorphism design (`glass`, `glass-card`, `glass-input` classes in `src/styles/global.css`)
+- Dark mode support via `.dark` class on `<html>`
 - Animated background blobs on all pages
 
 **Global Constants** (`src/consts.ts`):

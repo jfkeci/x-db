@@ -1,62 +1,65 @@
-# Astro Starter Kit: Blog
+# x-db
 
-```sh
-npm create astro@latest -- --template blog
+An exercise database website built with [Astro 5](https://astro.build). Features a fitness-focused blog and an exercise collection with detailed guides.
+
+**Live site:** https://jfkeci.github.io/x-db
+
+## About
+
+x-db is a fitness resource designed to help users discover and learn exercises. The website provides a searchable collection of exercises organized by category, muscle group, and difficulty level. Each exercise includes step-by-step instructions and equipment requirements. The blog section offers fitness tips, workout guides, and training advice.
+
+The codebase uses Astro's content collections to manage exercises and blog posts as MDX files, making it easy to add new content. The UI features a modern glassmorphism design with dark mode support, built using Tailwind CSS utility classes.
+
+## Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server (runs at localhost:4322/x-db/)
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Project Structure
 
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```
+src/
+├── content/
+│   ├── blog/          # Blog posts (MDX)
+│   └── exercises/     # Exercise guides (MDX)
+├── layouts/           # Page layouts
+├── pages/
+│   ├── blog/          # Blog routes
+│   └── exercises/     # Exercise routes
+├── components/        # Reusable components
+├── styles/            # Global CSS
+└── consts.ts          # Site constants
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Content Collections
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Blog
+Posts with title, description, pubDate, and heroImage.
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+### Exercises
+Exercise guides with:
+- **category**: Strength, Cardio, Core, Flexibility, Compound
+- **muscleGroups**: Target muscles
+- **difficulty**: Beginner, Intermediate, Advanced
+- **equipment**: Required equipment
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Tech Stack
 
-## 🧞 Commands
+- [Astro 5](https://astro.build) - Static site generator
+- [Tailwind CSS](https://tailwindcss.com) - Styling
+- [MDX](https://mdxjs.com) - Content authoring
 
-All commands are run from the root of the project, from a terminal:
+## Deployment
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+The site deploys to GitHub Pages. All internal links use the `/x-db` base path.
