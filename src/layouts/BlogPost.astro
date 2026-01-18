@@ -16,7 +16,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<BaseHead title={title} description={description} />
 	</head>
 
-	<body class="min-h-screen bg-gradient-to-br from-purple-700 via-pink-600 to-orange-500 dark:from-gray-900 dark:via-purple-900 dark:to-gray-900 transition-colors duration-500">
+	<body class="min-h-screen flex flex-col bg-gradient-to-br from-purple-700 via-pink-600 to-orange-500 dark:from-gray-900 dark:via-purple-900 dark:to-gray-900 transition-colors duration-500">
 		<!-- Animated background blobs -->
 		<div class="fixed inset-0 overflow-hidden pointer-events-none">
 			<div class="absolute -top-40 -left-40 w-80 h-80 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob"></div>
@@ -26,7 +26,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 		<Header />
 
-		<main class="relative z-10 max-w-4xl mx-auto px-4 pt-24 pb-12">
+		<main class="relative z-10 max-w-4xl mx-auto px-4 pt-24 pb-12 flex-1">
 			<article class="glass-card rounded-3xl overflow-hidden">
 				{heroImage && (
 					<div class="w-full h-64 md:h-96">
