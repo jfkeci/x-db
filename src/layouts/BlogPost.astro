@@ -14,73 +14,89 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
 	</head>
 
-	<body>
+	<body class="min-h-screen bg-gradient-to-br from-purple-700 via-pink-600 to-orange-500 dark:from-gray-900 dark:via-purple-900 dark:to-gray-900 transition-colors duration-500">
+		<!-- Animated background blobs -->
+		<div class="fixed inset-0 overflow-hidden pointer-events-none">
+			<div class="absolute -top-40 -left-40 w-80 h-80 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob"></div>
+			<div class="absolute top-40 -right-40 w-80 h-80 bg-yellow-300 dark:bg-pink-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+			<div class="absolute -bottom-40 left-1/2 w-80 h-80 bg-pink-400 dark:bg-blue-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+		</div>
+
 		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
+
+		<main class="relative z-10 max-w-4xl mx-auto px-4 pt-24 pb-12">
+			<article class="glass-card rounded-3xl overflow-hidden">
+				{heroImage && (
+					<div class="w-full h-64 md:h-96">
+						<Image
+							width={1020}
+							height={510}
+							src={heroImage}
+							alt=""
+							class="w-full h-full object-cover"
+						/>
 					</div>
-					<slot />
+				)}
+				<div class="p-6 md:p-10">
+					<div class="mb-8 text-center">
+						<div class="flex items-center justify-center gap-3 mb-4">
+							<span class="glass px-3 py-1 rounded-full text-xs font-medium text-white/80">
+								Article
+							</span>
+							<span class="text-white/60 text-sm">
+								<FormattedDate date={pubDate} />
+							</span>
+							{updatedDate && (
+								<span class="text-white/50 text-sm italic">
+									Updated: <FormattedDate date={updatedDate} />
+								</span>
+							)}
+						</div>
+						<h1 class="text-3xl md:text-4xl font-bold text-white mb-4">{title}</h1>
+						<div class="w-24 h-1 bg-white/30 mx-auto rounded-full"></div>
+					</div>
+
+					<div class="prose prose-lg max-w-none text-white/90
+						prose-headings:text-white prose-headings:font-bold
+						prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4
+						prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3
+						prose-p:mb-4 prose-p:leading-relaxed
+						prose-a:text-white prose-a:underline prose-a:underline-offset-2 hover:prose-a:text-white/80
+						prose-strong:text-white prose-strong:font-semibold
+						prose-ul:my-4 prose-ul:list-disc prose-ul:pl-6
+						prose-ol:my-4 prose-ol:list-decimal prose-ol:pl-6
+						prose-li:mb-2 prose-li:text-white/80
+						prose-blockquote:border-l-4 prose-blockquote:border-white/30 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-white/70
+						prose-code:bg-white/10 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-white/90
+						prose-pre:bg-black/20 prose-pre:rounded-xl prose-pre:p-4
+						prose-hr:border-white/20 prose-hr:my-8
+						prose-table:w-full prose-th:text-left prose-th:text-white prose-th:p-3 prose-th:bg-white/10 prose-td:p-3 prose-td:border-t prose-td:border-white/10">
+						<slot />
+					</div>
 				</div>
 			</article>
 		</main>
+
 		<Footer />
+
+		<style>
+			@keyframes blob {
+				0% { transform: translate(0px, 0px) scale(1); }
+				33% { transform: translate(30px, -50px) scale(1.1); }
+				66% { transform: translate(-20px, 20px) scale(0.9); }
+				100% { transform: translate(0px, 0px) scale(1); }
+			}
+			.animate-blob {
+				animation: blob 7s infinite;
+			}
+			.animation-delay-2000 {
+				animation-delay: 2s;
+			}
+			.animation-delay-4000 {
+				animation-delay: 4s;
+			}
+		</style>
 	</body>
 </html>
