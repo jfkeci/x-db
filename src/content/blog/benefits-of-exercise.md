@@ -2,7 +2,7 @@
 title: '10 Science-Backed Benefits of Regular Exercise'
 description: 'Discover how regular physical activity can transform your body and mind, from boosting energy to improving mental health.'
 pubDate: 'Jan 18 2025'
-heroImage: '../../assets/blog-placeholder-1.jpg'
+heroImage: '../../assets/exercise-benefits-hero.svg'
 ---
 
 Regular exercise is one of the most impactful things you can do for your health. Whether you're just starting your fitness journey or looking for motivation to stay consistent, understanding the benefits can help keep you on track.

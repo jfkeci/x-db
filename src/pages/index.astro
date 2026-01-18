@@ -3,15 +3,6 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-
-const workouts = [
-	{ id: 1, name: 'Push Day', exercises: 6, duration: '45 min', category: 'Strength', icon: '💪' },
-	{ id: 2, name: 'Pull Day', exercises: 6, duration: '45 min', category: 'Strength', icon: '🏋️' },
-	{ id: 3, name: 'Leg Day', exercises: 8, duration: '60 min', category: 'Strength', icon: '🦵' },
-	{ id: 4, name: 'HIIT Cardio', exercises: 10, duration: '30 min', category: 'Cardio', icon: '🔥' },
-	{ id: 5, name: 'Core Blast', exercises: 8, duration: '20 min', category: 'Core', icon: '🎯' },
-	{ id: 6, name: 'Full Body', exercises: 10, duration: '50 min', category: 'Strength', icon: '⚡' },
-];
 ---
 
 <!doctype html>
@@ -29,121 +20,33 @@ const workouts = [
 
 		<Header />
 
-		<div class="relative z-10 max-w-7xl mx-auto px-4 pt-24 pb-12 flex-1">
-			<!-- Hero Section -->
-			<div class="text-center mb-12">
-				<h1 class="text-5xl md:text-7xl font-bold text-white mb-4 drop-shadow-lg">
+		<main class="relative z-10 flex-1 flex items-center justify-center px-4">
+			<div class="text-center max-w-3xl mx-auto">
+				<h1 class="text-6xl md:text-8xl font-bold text-white mb-6 drop-shadow-lg">
 					x-db
 				</h1>
-				<p class="text-xl text-white/80 max-w-2xl mx-auto">
+				<p class="text-xl md:text-2xl text-white/80 mb-12 max-w-2xl mx-auto">
 					Your ultimate exercise database. Discover, track, and crush your workouts.
 				</p>
+
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a
+						href={`${import.meta.env.BASE_URL}/exercises/`}
+						class="glass-card px-8 py-4 rounded-2xl text-white font-semibold text-lg hover:scale-105 hover:bg-white/30 transition-all duration-300 flex items-center justify-center gap-3"
+					>
+						<span class="text-2xl">💪</span>
+						Browse Exercises
+					</a>
+					<a
+						href={`${import.meta.env.BASE_URL}/blog/`}
+						class="glass px-8 py-4 rounded-2xl text-white/80 font-semibold text-lg hover:scale-105 hover:bg-white/20 hover:text-white transition-all duration-300 flex items-center justify-center gap-3"
+					>
+						<span class="text-2xl">📖</span>
+						Read Blog
+					</a>
+				</div>
 			</div>
-
-			<div class="flex flex-col lg:flex-row gap-8">
-				<!-- Sidebar -->
-				<aside class="w-full lg:w-72 flex-shrink-0">
-					<div class="glass-card rounded-3xl p-6 sticky top-24">
-						<h2 class="text-lg font-semibold text-white mb-4">Search</h2>
-						<input
-							type="text"
-							placeholder="Search workouts..."
-							class="glass-input w-full px-4 py-3 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
-						/>
-
-						<h3 class="text-md font-semibold text-white mt-8 mb-4">Categories</h3>
-						<ul class="space-y-2">
-							<li>
-								<a href="#" class="flex items-center gap-3 px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all">
-									<span>🏠</span> All Workouts
-								</a>
-							</li>
-							<li>
-								<a href="#" class="flex items-center gap-3 px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all">
-									<span>💪</span> Strength
-								</a>
-							</li>
-							<li>
-								<a href="#" class="flex items-center gap-3 px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all">
-									<span>❤️</span> Cardio
-								</a>
-							</li>
-							<li>
-								<a href="#" class="flex items-center gap-3 px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all">
-									<span>🎯</span> Core
-								</a>
-							</li>
-							<li>
-								<a href="#" class="flex items-center gap-3 px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all">
-									<span>🧘</span> Flexibility
-								</a>
-							</li>
-						</ul>
-
-						<div class="mt-8 p-4 rounded-2xl bg-white/10">
-							<p class="text-white/60 text-sm">
-								<span class="text-2xl font-bold text-white block">{workouts.length}</span>
-								workouts available
-							</p>
-						</div>
-					</div>
-				</aside>
-
-				<!-- Main Content -->
-				<main class="flex-1">
-					<div class="flex items-center justify-between mb-6">
-						<h2 class="text-2xl font-bold text-white">Workouts</h2>
-						<div class="flex gap-2">
-							<button class="glass px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/20 transition-all text-sm">
-								Latest
-							</button>
-							<button class="glass px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/20 transition-all text-sm">
-								Popular
-							</button>
-						</div>
-					</div>
-
-					<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-						{workouts.map((workout) => (
-							<article class="glass-card rounded-3xl p-6 hover:scale-[1.02] hover:bg-white/30 dark:hover:bg-white/15 transition-all duration-300 cursor-pointer group">
-								<div class="flex items-start justify-between mb-4">
-									<span class="text-4xl">{workout.icon}</span>
-									<span class="glass px-3 py-1 rounded-full text-xs font-medium text-white/80">
-										{workout.category}
-									</span>
-								</div>
-								<h3 class="text-xl font-bold text-white mb-2 group-hover:text-white transition-colors">
-									{workout.name}
-								</h3>
-								<div class="flex items-center gap-4 text-white/60 text-sm mb-4">
-									<span class="flex items-center gap-1">
-										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-										</svg>
-										{workout.exercises} exercises
-									</span>
-									<span class="flex items-center gap-1">
-										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-										</svg>
-										{workout.duration}
-									</span>
-								</div>
-								<a
-									href={`${import.meta.env.BASE_URL}/workout/${workout.id}`}
-									class="inline-flex items-center gap-2 text-white font-medium group-hover:gap-3 transition-all"
-								>
-									View workout
-									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-									</svg>
-								</a>
-							</article>
-						))}
-					</div>
-				</main>
-			</div>
-		</div>
+		</main>
 
 		<Footer />
 

@@ -5,7 +5,6 @@ category: 'Compound'
 muscleGroups: ['Back', 'Glutes', 'Hamstrings', 'Core', 'Forearms']
 difficulty: 'Intermediate'
 equipment: ['Barbell']
-image: '../../assets/blog-placeholder-3.jpg'
 ---
 
 The deadlift is a fundamental strength exercise that builds total body power and strength, particularly targeting the posterior chain.

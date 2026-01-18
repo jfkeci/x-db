@@ -5,7 +5,6 @@ category: 'Compound'
 muscleGroups: ['Quadriceps', 'Glutes', 'Hamstrings', 'Core']
 difficulty: 'Intermediate'
 equipment: ['Barbell', 'Squat Rack']
-image: '../../assets/blog-placeholder-2.jpg'
 ---
 
 The barbell squat is considered one of the most effective exercises for building lower body strength and overall muscle mass.

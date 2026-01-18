@@ -58,21 +58,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 						<div class="w-24 h-1 bg-white/30 mx-auto rounded-full"></div>
 					</div>
 
-					<div class="prose prose-lg max-w-none text-white/90
-						prose-headings:text-white prose-headings:font-bold
-						prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4
-						prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3
-						prose-p:mb-4 prose-p:leading-relaxed
-						prose-a:text-white prose-a:underline prose-a:underline-offset-2 hover:prose-a:text-white/80
-						prose-strong:text-white prose-strong:font-semibold
-						prose-ul:my-4 prose-ul:list-disc prose-ul:pl-6
-						prose-ol:my-4 prose-ol:list-decimal prose-ol:pl-6
-						prose-li:mb-2 prose-li:text-white/80
-						prose-blockquote:border-l-4 prose-blockquote:border-white/30 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-white/70
-						prose-code:bg-white/10 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-white/90
-						prose-pre:bg-black/20 prose-pre:rounded-xl prose-pre:p-4
-						prose-hr:border-white/20 prose-hr:my-8
-						prose-table:w-full prose-th:text-left prose-th:text-white prose-th:p-3 prose-th:bg-white/10 prose-td:p-3 prose-td:border-t prose-td:border-white/10">
+					<div class="blog-content">
 						<slot />
 					</div>
 				</div>
@@ -96,6 +82,144 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			}
 			.animation-delay-4000 {
 				animation-delay: 4s;
+			}
+
+			/* Blog content typography */
+			.blog-content {
+				color: rgba(255, 255, 255, 0.9);
+				font-size: 1.125rem;
+				line-height: 1.75;
+			}
+
+			.blog-content h2 {
+				color: white;
+				font-size: 1.75rem;
+				font-weight: 700;
+				margin-top: 2.5rem;
+				margin-bottom: 1rem;
+				padding-bottom: 0.5rem;
+				border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+			}
+
+			.blog-content h3 {
+				color: white;
+				font-size: 1.375rem;
+				font-weight: 600;
+				margin-top: 2rem;
+				margin-bottom: 0.75rem;
+			}
+
+			.blog-content p {
+				margin-bottom: 1.25rem;
+			}
+
+			.blog-content strong {
+				color: white;
+				font-weight: 600;
+			}
+
+			.blog-content em {
+				font-style: italic;
+			}
+
+			.blog-content a {
+				color: white;
+				text-decoration: underline;
+				text-underline-offset: 3px;
+			}
+
+			.blog-content a:hover {
+				color: rgba(255, 255, 255, 0.8);
+			}
+
+			/* Lists */
+			.blog-content ul {
+				list-style-type: disc;
+				padding-left: 1.5rem;
+				margin: 1.25rem 0;
+			}
+
+			.blog-content ol {
+				list-style-type: decimal;
+				padding-left: 1.5rem;
+				margin: 1.25rem 0;
+			}
+
+			.blog-content li {
+				margin-bottom: 0.5rem;
+				color: rgba(255, 255, 255, 0.85);
+			}
+
+			.blog-content li::marker {
+				color: rgba(255, 255, 255, 0.6);
+			}
+
+			/* Tables */
+			.blog-content table {
+				width: 100%;
+				border-collapse: collapse;
+				margin: 1.5rem 0;
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 0.75rem;
+				overflow: hidden;
+			}
+
+			.blog-content thead {
+				background: rgba(255, 255, 255, 0.15);
+			}
+
+			.blog-content th {
+				color: white;
+				font-weight: 600;
+				text-align: left;
+				padding: 0.875rem 1rem;
+				border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+			}
+
+			.blog-content td {
+				padding: 0.75rem 1rem;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+			}
+
+			.blog-content tr:last-child td {
+				border-bottom: none;
+			}
+
+			/* Blockquotes */
+			.blog-content blockquote {
+				border-left: 4px solid rgba(255, 255, 255, 0.3);
+				padding-left: 1rem;
+				margin: 1.5rem 0;
+				font-style: italic;
+				color: rgba(255, 255, 255, 0.7);
+			}
+
+			/* Code */
+			.blog-content code {
+				background: rgba(255, 255, 255, 0.15);
+				padding: 0.125rem 0.375rem;
+				border-radius: 0.25rem;
+				font-size: 0.9em;
+			}
+
+			.blog-content pre {
+				background: rgba(0, 0, 0, 0.3);
+				padding: 1rem;
+				border-radius: 0.75rem;
+				overflow-x: auto;
+				margin: 1.5rem 0;
+			}
+
+			.blog-content pre code {
+				background: transparent;
+				padding: 0;
+			}
+
+			/* Horizontal rule */
+			.blog-content hr {
+				border: none;
+				border-top: 1px solid rgba(255, 255, 255, 0.2);
+				margin: 2rem 0;
 			}
 		</style>
 	</body>

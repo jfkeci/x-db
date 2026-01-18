@@ -5,7 +5,6 @@ category: 'Strength'
 muscleGroups: ['Lats', 'Biceps', 'Rear Deltoids', 'Core']
 difficulty: 'Intermediate'
 equipment: ['Pull-Up Bar']
-image: '../../assets/blog-placeholder-4.jpg'
 ---
 
 The pull-up is one of the best bodyweight exercises for developing upper body pulling strength and building a wide, muscular back.
