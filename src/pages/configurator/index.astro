@@ -1,0 +1,528 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const exercises = await getCollection('exercises');
+
+const difficultyColors: Record<string, string> = {
+	'Beginner': 'bg-green-500/20 text-green-300',
+	'Intermediate': 'bg-yellow-500/20 text-yellow-300',
+	'Advanced': 'bg-red-500/20 text-red-300',
+};
+
+// Get unique categories and muscle groups
+const categories = [...new Set(exercises.map(e => e.data.category))].sort();
+const muscleGroups = [...new Set(exercises.flatMap(e => e.data.muscleGroups))].sort();
+
+// Serialize exercise data for client-side use
+const exerciseData = exercises.map(e => ({
+	id: e.id,
+	name: e.data.name,
+	description: e.data.description,
+	category: e.data.category,
+	muscleGroups: e.data.muscleGroups,
+	difficulty: e.data.difficulty,
+	equipment: e.data.equipment || [],
+}));
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Workout Configurator | ${SITE_TITLE}`} description="Build your custom workout plan and download it as a PDF." />
+	</head>
+	<body class="min-h-screen flex flex-col bg-gradient-to-br from-purple-700 via-pink-600 to-orange-500 dark:from-gray-900 dark:via-purple-900 dark:to-gray-900 transition-colors duration-500">
+		<!-- Animated background blobs -->
+		<div class="fixed inset-0 overflow-hidden pointer-events-none">
+			<div class="absolute -top-40 -left-40 w-80 h-80 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob"></div>
+			<div class="absolute top-40 -right-40 w-80 h-80 bg-yellow-300 dark:bg-pink-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+			<div class="absolute -bottom-40 left-1/2 w-80 h-80 bg-pink-400 dark:bg-blue-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+		</div>
+
+		<Header />
+
+		<div class="relative z-10 max-w-7xl mx-auto px-4 pt-24 pb-12 flex-1 w-full">
+			<div class="text-center mb-8">
+				<h1 class="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">Workout Configurator</h1>
+				<p class="text-lg text-white/80">Select exercises to build your custom workout plan</p>
+			</div>
+
+			<div class="flex flex-col lg:flex-row gap-6 w-full">
+				<!-- Left Sidebar - Filters -->
+				<aside class="w-full lg:w-64 flex-shrink-0">
+					<div class="glass-card rounded-3xl p-6 sticky top-24">
+						<h2 class="text-lg font-semibold text-white mb-4">Filters</h2>
+						<input
+							type="text"
+							id="exercise-search"
+							placeholder="Search exercises..."
+							class="glass-input w-full px-4 py-3 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
+						/>
+
+						<div class="mt-6">
+							<label class="text-sm font-medium text-white/80 block mb-2">Category</label>
+							<select id="category-filter" class="glass-input w-full px-4 py-3 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all">
+								<option value="all">All Categories</option>
+								{categories.map((category) => (
+									<option value={category}>{category}</option>
+								))}
+							</select>
+						</div>
+
+						<div class="mt-4">
+							<label class="text-sm font-medium text-white/80 block mb-2">Difficulty</label>
+							<select id="difficulty-filter" class="glass-input w-full px-4 py-3 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all">
+								<option value="all">All Levels</option>
+								<option value="Beginner">Beginner</option>
+								<option value="Intermediate">Intermediate</option>
+								<option value="Advanced">Advanced</option>
+							</select>
+						</div>
+
+						<div class="mt-4">
+							<label class="text-sm font-medium text-white/80 block mb-2">Muscle Group</label>
+							<select id="muscle-filter" class="glass-input w-full px-4 py-3 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all">
+								<option value="all">All Muscles</option>
+								{muscleGroups.map((muscle) => (
+									<option value={muscle}>{muscle}</option>
+								))}
+							</select>
+						</div>
+
+						<div class="mt-6 p-4 rounded-2xl bg-white/10">
+							<p class="text-white/60 text-sm">
+								<span id="exercise-count" class="text-2xl font-bold text-white block">{exercises.length}</span>
+								exercises available
+							</p>
+						</div>
+					</div>
+				</aside>
+
+				<!-- Main Content - Exercise Grid -->
+				<main class="flex-1 min-w-0">
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="exercises-grid">
+						{exercises.map((exercise) => (
+							<button
+								type="button"
+								class="exercise-card text-left"
+								data-id={exercise.id}
+								data-name={exercise.data.name.toLowerCase()}
+								data-category={exercise.data.category}
+								data-difficulty={exercise.data.difficulty}
+								data-muscles={exercise.data.muscleGroups.join(',')}
+							>
+								<article class="glass-card rounded-2xl p-4 h-full hover:bg-white/30 dark:hover:bg-white/15 transition-all duration-300 relative">
+									<div class="absolute top-3 right-3 w-6 h-6 rounded-full border-2 border-white/40 flex items-center justify-center transition-all check-indicator">
+										<svg class="w-4 h-4 text-white opacity-0 check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+										</svg>
+									</div>
+
+									<div class="flex items-start gap-3">
+										<Image src={exercise.data.icon} alt={exercise.data.name} class="w-10 h-10 flex-shrink-0" />
+										<div class="min-w-0 flex-1">
+											<h3 class="text-base font-bold text-white truncate pr-8">
+												{exercise.data.name}
+											</h3>
+											<div class="flex items-center gap-2 mt-1">
+												<span class={`px-2 py-0.5 rounded-full text-xs font-medium ${difficultyColors[exercise.data.difficulty]}`}>
+													{exercise.data.difficulty}
+												</span>
+												<span class="text-white/50 text-xs">{exercise.data.category}</span>
+											</div>
+										</div>
+									</div>
+								</article>
+							</button>
+						))}
+					</div>
+
+					<div id="no-results" class="hidden text-center py-12">
+						<p class="text-white/60 text-lg">No exercises match your filters</p>
+					</div>
+				</main>
+
+				<!-- Right Sidebar - Workout Builder -->
+				<aside class="w-full lg:w-80 flex-shrink-0">
+					<div class="glass-card rounded-3xl p-6 sticky top-24">
+						<h2 class="text-lg font-semibold text-white mb-4">Your Workout</h2>
+
+						<div class="mb-4">
+							<input
+								type="text"
+								id="workout-name"
+								placeholder="Workout name..."
+								value="My Workout Plan"
+								class="glass-input w-full px-4 py-3 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
+							/>
+						</div>
+
+						<div id="selected-exercises" class="space-y-3 max-h-[40vh] overflow-y-auto mb-4">
+							<p id="empty-state" class="text-white/50 text-sm text-center py-8">
+								Click exercises to add them to your workout
+							</p>
+						</div>
+
+						<div class="border-t border-white/20 pt-4">
+							<div class="flex items-center justify-between mb-4">
+								<span class="text-white/70 text-sm">
+									<span id="selected-count" class="font-bold text-white">0</span> exercises selected
+								</span>
+								<button
+									id="clear-all"
+									class="text-sm text-white/50 hover:text-white transition-colors hidden"
+								>
+									Clear all
+								</button>
+							</div>
+
+							<button
+								id="download-pdf"
+								disabled
+								class="w-full py-3 px-4 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 bg-white/20 text-white/50 cursor-not-allowed disabled:opacity-50"
+							>
+								<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+								</svg>
+								Download PDF
+							</button>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</div>
+
+		<Footer />
+
+		<!-- Pass exercise data to client -->
+		<script define:vars={{ exerciseData }}>
+			window.exerciseData = exerciseData;
+		</script>
+
+		<script>
+			import { generateWorkoutPDF, type ExerciseData } from '../../lib/pdfGenerator';
+
+			// Types
+			interface SelectedExercise {
+				id: string;
+				sets: number;
+				reps: number;
+			}
+
+			// State
+			let selectedExercises: SelectedExercise[] = [];
+			const exerciseData: ExerciseData[] = (window as any).exerciseData;
+
+			// Default values
+			const DEFAULT_SETS = 3;
+			const DEFAULT_REPS = 10;
+
+			// DOM elements
+			const searchInput = document.getElementById('exercise-search') as HTMLInputElement;
+			const categoryFilter = document.getElementById('category-filter') as HTMLSelectElement;
+			const difficultyFilter = document.getElementById('difficulty-filter') as HTMLSelectElement;
+			const muscleFilter = document.getElementById('muscle-filter') as HTMLSelectElement;
+			const exerciseCards = document.querySelectorAll('.exercise-card');
+			const exerciseCount = document.getElementById('exercise-count');
+			const noResults = document.getElementById('no-results');
+			const exercisesGrid = document.getElementById('exercises-grid');
+			const selectedExercisesContainer = document.getElementById('selected-exercises');
+			const emptyState = document.getElementById('empty-state');
+			const selectedCount = document.getElementById('selected-count');
+			const clearAllBtn = document.getElementById('clear-all');
+			const downloadBtn = document.getElementById('download-pdf') as HTMLButtonElement;
+			const workoutNameInput = document.getElementById('workout-name') as HTMLInputElement;
+
+			// Load from localStorage
+			const saved = localStorage.getItem('selectedExercises');
+			if (saved) {
+				const parsed = JSON.parse(saved);
+				// Handle migration from old format (array of strings)
+				if (parsed.length > 0 && typeof parsed[0] === 'string') {
+					selectedExercises = parsed.map((id: string) => ({ id, sets: DEFAULT_SETS, reps: DEFAULT_REPS }));
+				} else {
+					selectedExercises = parsed;
+				}
+				updateSelectedUI();
+			}
+
+			const savedName = localStorage.getItem('workoutName');
+			if (savedName && workoutNameInput) {
+				workoutNameInput.value = savedName;
+			}
+
+			// Filter exercises
+			function filterExercises() {
+				const search = searchInput?.value.toLowerCase() || '';
+				const category = categoryFilter?.value || 'all';
+				const difficulty = difficultyFilter?.value || 'all';
+				const muscle = muscleFilter?.value || 'all';
+
+				let visibleCount = 0;
+
+				exerciseCards.forEach((card) => {
+					const name = card.getAttribute('data-name') || '';
+					const cardCategory = card.getAttribute('data-category') || '';
+					const cardDifficulty = card.getAttribute('data-difficulty') || '';
+					const muscles = card.getAttribute('data-muscles') || '';
+
+					const matchesSearch = name.includes(search);
+					const matchesCategory = category === 'all' || cardCategory === category;
+					const matchesDifficulty = difficulty === 'all' || cardDifficulty === difficulty;
+					const matchesMuscle = muscle === 'all' || muscles.includes(muscle);
+
+					if (matchesSearch && matchesCategory && matchesDifficulty && matchesMuscle) {
+						(card as HTMLElement).style.display = '';
+						visibleCount++;
+					} else {
+						(card as HTMLElement).style.display = 'none';
+					}
+				});
+
+				if (exerciseCount) {
+					exerciseCount.textContent = visibleCount.toString();
+				}
+
+				if (noResults && exercisesGrid) {
+					if (visibleCount === 0) {
+						noResults.classList.remove('hidden');
+						exercisesGrid.classList.add('hidden');
+					} else {
+						noResults.classList.add('hidden');
+						exercisesGrid.classList.remove('hidden');
+					}
+				}
+			}
+
+			// Toggle exercise selection
+			function toggleExercise(id: string) {
+				const index = selectedExercises.findIndex(e => e.id === id);
+				if (index === -1) {
+					selectedExercises.push({ id, sets: DEFAULT_SETS, reps: DEFAULT_REPS });
+				} else {
+					selectedExercises.splice(index, 1);
+				}
+				localStorage.setItem('selectedExercises', JSON.stringify(selectedExercises));
+				updateSelectedUI();
+			}
+
+			// Update sets/reps for an exercise
+			function updateExerciseSetsReps(id: string, sets: number, reps: number) {
+				const exercise = selectedExercises.find(e => e.id === id);
+				if (exercise) {
+					exercise.sets = sets;
+					exercise.reps = reps;
+					localStorage.setItem('selectedExercises', JSON.stringify(selectedExercises));
+				}
+			}
+
+			// Update UI for selected exercises
+			function updateSelectedUI() {
+				// Update card visual states
+				exerciseCards.forEach((card) => {
+					const id = card.getAttribute('data-id');
+					const isSelected = id && selectedExercises.some(e => e.id === id);
+					const indicator = card.querySelector('.check-indicator');
+					const icon = card.querySelector('.check-icon');
+					const article = card.querySelector('article');
+
+					if (isSelected) {
+						indicator?.classList.add('bg-green-500', 'border-green-500');
+						icon?.classList.remove('opacity-0');
+						article?.classList.add('ring-2', 'ring-green-400/50');
+					} else {
+						indicator?.classList.remove('bg-green-500', 'border-green-500');
+						icon?.classList.add('opacity-0');
+						article?.classList.remove('ring-2', 'ring-green-400/50');
+					}
+				});
+
+				// Generate options for sets (1-10) and reps (1-30)
+				const setsOptions = Array.from({ length: 10 }, (_, i) => i + 1);
+				const repsOptions = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 30];
+
+				// Update selected exercises list
+				if (selectedExercisesContainer) {
+					if (selectedExercises.length === 0) {
+						selectedExercisesContainer.innerHTML = `
+							<p id="empty-state" class="text-white/50 text-sm text-center py-8">
+								Click exercises to add them to your workout
+							</p>
+						`;
+					} else {
+						selectedExercisesContainer.innerHTML = selectedExercises.map((selected, index) => {
+							const exercise = exerciseData.find(e => e.id === selected.id);
+							if (!exercise) return '';
+							return `
+								<div class="p-3 rounded-xl bg-white/10 group" data-id="${selected.id}">
+									<div class="flex items-center gap-3 mb-2">
+										<span class="w-6 h-6 rounded-full bg-purple-500/30 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">
+											${index + 1}
+										</span>
+										<span class="flex-1 text-white text-sm truncate">${exercise.name}</span>
+										<button type="button" class="remove-exercise opacity-0 group-hover:opacity-100 p-1 hover:bg-white/20 rounded transition-all flex-shrink-0" data-id="${selected.id}">
+											<svg class="w-4 h-4 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+											</svg>
+										</button>
+									</div>
+									<div class="flex items-center gap-2 ml-9">
+										<div class="flex items-center gap-1">
+											<select class="sets-select glass-input px-2 py-1 rounded-lg text-white text-xs focus:outline-none" data-id="${selected.id}">
+												${setsOptions.map(n => `<option value="${n}" ${n === selected.sets ? 'selected' : ''}>${n}</option>`).join('')}
+											</select>
+											<span class="text-white/50 text-xs">sets</span>
+										</div>
+										<span class="text-white/30">×</span>
+										<div class="flex items-center gap-1">
+											<select class="reps-select glass-input px-2 py-1 rounded-lg text-white text-xs focus:outline-none" data-id="${selected.id}">
+												${repsOptions.map(n => `<option value="${n}" ${n === selected.reps ? 'selected' : ''}>${n}</option>`).join('')}
+											</select>
+											<span class="text-white/50 text-xs">reps</span>
+										</div>
+									</div>
+								</div>
+							`;
+						}).join('');
+
+						// Add remove listeners
+						selectedExercisesContainer.querySelectorAll('.remove-exercise').forEach(btn => {
+							btn.addEventListener('click', (e) => {
+								e.stopPropagation();
+								const id = (btn as HTMLElement).getAttribute('data-id');
+								if (id) toggleExercise(id);
+							});
+						});
+
+						// Add sets/reps change listeners
+						selectedExercisesContainer.querySelectorAll('.sets-select').forEach(select => {
+							select.addEventListener('change', (e) => {
+								const target = e.target as HTMLSelectElement;
+								const id = target.getAttribute('data-id');
+								const repsSelect = selectedExercisesContainer.querySelector(`.reps-select[data-id="${id}"]`) as HTMLSelectElement;
+								if (id && repsSelect) {
+									updateExerciseSetsReps(id, parseInt(target.value), parseInt(repsSelect.value));
+								}
+							});
+						});
+
+						selectedExercisesContainer.querySelectorAll('.reps-select').forEach(select => {
+							select.addEventListener('change', (e) => {
+								const target = e.target as HTMLSelectElement;
+								const id = target.getAttribute('data-id');
+								const setsSelect = selectedExercisesContainer.querySelector(`.sets-select[data-id="${id}"]`) as HTMLSelectElement;
+								if (id && setsSelect) {
+									updateExerciseSetsReps(id, parseInt(setsSelect.value), parseInt(target.value));
+								}
+							});
+						});
+					}
+				}
+
+				// Update count
+				if (selectedCount) {
+					selectedCount.textContent = selectedExercises.length.toString();
+				}
+
+				// Update clear all button
+				if (clearAllBtn) {
+					if (selectedExercises.length > 0) {
+						clearAllBtn.classList.remove('hidden');
+					} else {
+						clearAllBtn.classList.add('hidden');
+					}
+				}
+
+				// Update download button
+				if (downloadBtn) {
+					if (selectedExercises.length > 0) {
+						downloadBtn.disabled = false;
+						downloadBtn.classList.remove('bg-white/20', 'text-white/50', 'cursor-not-allowed');
+						downloadBtn.classList.add('bg-gradient-to-r', 'from-purple-500', 'to-pink-500', 'text-white', 'hover:from-purple-600', 'hover:to-pink-600', 'cursor-pointer');
+					} else {
+						downloadBtn.disabled = true;
+						downloadBtn.classList.add('bg-white/20', 'text-white/50', 'cursor-not-allowed');
+						downloadBtn.classList.remove('bg-gradient-to-r', 'from-purple-500', 'to-pink-500', 'text-white', 'hover:from-purple-600', 'hover:to-pink-600', 'cursor-pointer');
+					}
+				}
+			}
+
+			// Event listeners
+			searchInput?.addEventListener('input', filterExercises);
+			categoryFilter?.addEventListener('change', filterExercises);
+			difficultyFilter?.addEventListener('change', filterExercises);
+			muscleFilter?.addEventListener('change', filterExercises);
+
+			exerciseCards.forEach((card) => {
+				card.addEventListener('click', () => {
+					const id = card.getAttribute('data-id');
+					if (id) toggleExercise(id);
+				});
+			});
+
+			clearAllBtn?.addEventListener('click', () => {
+				selectedExercises = [];
+				localStorage.setItem('selectedExercises', JSON.stringify(selectedExercises));
+				updateSelectedUI();
+			});
+
+			workoutNameInput?.addEventListener('input', () => {
+				localStorage.setItem('workoutName', workoutNameInput.value);
+			});
+
+			downloadBtn?.addEventListener('click', () => {
+				if (selectedExercises.length === 0) return;
+
+				const exercises = selectedExercises
+					.map(selected => {
+						const exercise = exerciseData.find(e => e.id === selected.id);
+						if (!exercise) return null;
+						return {
+							...exercise,
+							sets: selected.sets,
+							reps: selected.reps,
+						};
+					})
+					.filter((e): e is ExerciseData => e !== null);
+
+				const workoutName = workoutNameInput?.value || 'My Workout Plan';
+				generateWorkoutPDF(exercises, workoutName);
+			});
+
+			// Initialize
+			updateSelectedUI();
+		</script>
+
+		<style>
+			@keyframes blob {
+				0% { transform: translate(0px, 0px) scale(1); }
+				33% { transform: translate(30px, -50px) scale(1.1); }
+				66% { transform: translate(-20px, 20px) scale(0.9); }
+				100% { transform: translate(0px, 0px) scale(1); }
+			}
+			.animate-blob {
+				animation: blob 7s infinite;
+			}
+			.animation-delay-2000 {
+				animation-delay: 2s;
+			}
+			.animation-delay-4000 {
+				animation-delay: 4s;
+			}
+
+			select option {
+				background: #1f2937;
+				color: white;
+			}
+
+			.sets-select, .reps-select {
+				min-width: 45px;
+				background: rgba(255, 255, 255, 0.15);
+			}
+		</style>
+	</body>
+</html>
