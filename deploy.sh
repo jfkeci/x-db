@@ -9,6 +9,9 @@ echo "Deploying to GitHub Pages..."
 
 cd dist
 
+# Disable Jekyll processing (required for _astro folder)
+touch .nojekyll
+
 git init
 git add -A
 git commit -m "Deploy to GitHub Pages"
