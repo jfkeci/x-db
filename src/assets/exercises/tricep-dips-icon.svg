@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="30" fill="url(#gradient)" opacity="0.2"/>
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#dc2626"/>
+    </linearGradient>
+  </defs>
+  <!-- Parallel bars -->
+  <path d="M10 24 L10 20 L20 20" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M54 24 L54 20 L44 20" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Head -->
+  <circle cx="32" cy="18" r="5" stroke="white" stroke-width="2.5" fill="none"/>
+  <!-- Arms gripping bars (bent for dip position) -->
+  <path d="M32 23 L22 26 L14 24" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M32 23 L42 26 L50 24" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Body -->
+  <path d="M32 23 L32 42" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Legs -->
+  <path d="M32 42 L28 56" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M32 42 L36 56" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

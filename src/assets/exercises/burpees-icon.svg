@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="30" fill="url(#gradient)" opacity="0.2"/>
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#f97316"/>
+    </linearGradient>
+  </defs>
+  <!-- Jumping figure -->
+  <!-- Head -->
+  <circle cx="32" cy="14" r="5" stroke="white" stroke-width="2.5" fill="none"/>
+  <!-- Body -->
+  <path d="M32 19 L32 34" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Arms raised up -->
+  <path d="M32 24 L22 14" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M32 24 L42 14" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Legs spread -->
+  <path d="M32 34 L22 48" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M32 34 L42 48" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Motion lines -->
+  <path d="M18 52 L22 50" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M46 52 L42 50" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M30 8 L30 4" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M34 8 L34 4" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+</svg>

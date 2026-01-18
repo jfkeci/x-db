@@ -24,6 +24,7 @@ const exercises = defineCollection({
 			difficulty: z.enum(['Beginner', 'Intermediate', 'Advanced']),
 			equipment: z.array(z.string()).optional(),
 			image: image().optional(),
+			icon: image(),
 		}),
 });
 

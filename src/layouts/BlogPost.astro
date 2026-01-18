@@ -83,8 +83,10 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.animation-delay-4000 {
 				animation-delay: 4s;
 			}
+		</style>
 
-			/* Blog content typography */
+		<style is:global>
+			/* Blog content typography - must be global to apply to slotted content */
 			.blog-content {
 				color: rgba(255, 255, 255, 0.9);
 				font-size: 1.125rem;
@@ -98,7 +100,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				margin-top: 2.5rem;
 				margin-bottom: 1rem;
 				padding-bottom: 0.5rem;
-				border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+				border-bottom: 2px solid rgba(255, 255, 255, 0.3);
 			}
 
 			.blog-content h3 {
@@ -135,19 +137,20 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			/* Lists */
 			.blog-content ul {
 				list-style-type: disc;
-				padding-left: 1.5rem;
+				padding-left: 1.75rem;
 				margin: 1.25rem 0;
 			}
 
 			.blog-content ol {
 				list-style-type: decimal;
-				padding-left: 1.5rem;
+				padding-left: 1.75rem;
 				margin: 1.25rem 0;
 			}
 
 			.blog-content li {
 				margin-bottom: 0.5rem;
 				color: rgba(255, 255, 255, 0.85);
+				padding-left: 0.25rem;
 			}
 
 			.blog-content li::marker {
@@ -157,11 +160,13 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			/* Tables */
 			.blog-content table {
 				width: 100%;
-				border-collapse: collapse;
+				border-collapse: separate;
+				border-spacing: 0;
 				margin: 1.5rem 0;
 				background: rgba(255, 255, 255, 0.1);
 				border-radius: 0.75rem;
 				overflow: hidden;
+				border: 1px solid rgba(255, 255, 255, 0.2);
 			}
 
 			.blog-content thead {
@@ -181,8 +186,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 			}
 
-			.blog-content tr:last-child td {
+			.blog-content tbody tr:last-child td {
 				border-bottom: none;
+			}
+
+			.blog-content tbody tr:hover {
+				background: rgba(255, 255, 255, 0.05);
 			}
 
 			/* Blockquotes */

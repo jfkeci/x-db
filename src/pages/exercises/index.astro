@@ -1,19 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { SITE_TITLE } from '../../consts';
 
 const exercises = await getCollection('exercises');
-
-const categoryIcons: Record<string, string> = {
-	'Strength': '💪',
-	'Cardio': '❤️',
-	'Core': '🎯',
-	'Flexibility': '🧘',
-	'Compound': '🏋️',
-};
 
 const difficultyColors: Record<string, string> = {
 	'Beginner': 'bg-green-500/20 text-green-300',
@@ -61,37 +54,53 @@ const muscleGroups = [...new Set(exercises.flatMap(e => e.data.muscleGroups))].s
 							class="glass-input w-full px-4 py-3 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
 						/>
 
-						<h3 class="text-md font-semibold text-white mt-8 mb-4">Categories</h3>
-						<ul class="space-y-2">
-							<li>
-								<button data-category="all" class="category-filter active flex items-center gap-3 w-full px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all text-left">
-									<span>🏠</span> All Categories
-								</button>
-							</li>
-							{categories.map((category) => (
+						<details class="mt-6 group" open>
+							<summary class="text-md font-semibold text-white cursor-pointer list-none flex items-center justify-between py-2 hover:text-white/80 transition-colors">
+								<span>Categories</span>
+								<svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+								</svg>
+							</summary>
+							<ul class="space-y-2 mt-3">
 								<li>
-									<button data-category={category} class="category-filter flex items-center gap-3 w-full px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all text-left">
-										<span>{categoryIcons[category]}</span> {category}
+									<button data-category="all" class="category-filter active flex items-center gap-3 w-full px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all text-left">
+										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+										All Categories
 									</button>
 								</li>
-							))}
-						</ul>
+								{categories.map((category) => (
+									<li>
+										<button data-category={category} class="category-filter flex items-center gap-3 w-full px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all text-left">
+											<span class="w-1.5 h-1.5 rounded-full bg-current"></span> {category}
+										</button>
+									</li>
+								))}
+							</ul>
+						</details>
 
-						<h3 class="text-md font-semibold text-white mt-8 mb-4">Muscle Groups</h3>
-						<ul class="space-y-2 max-h-64 overflow-y-auto">
-							<li>
-								<button data-muscle="all" class="muscle-filter active flex items-center gap-3 w-full px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all text-left">
-									<span>🎯</span> All Muscles
-								</button>
-							</li>
-							{muscleGroups.map((muscle) => (
+						<details class="mt-6 group" open>
+							<summary class="text-md font-semibold text-white cursor-pointer list-none flex items-center justify-between py-2 hover:text-white/80 transition-colors">
+								<span>Muscle Groups</span>
+								<svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+								</svg>
+							</summary>
+							<ul class="space-y-2 mt-3 max-h-64 overflow-y-auto">
 								<li>
-									<button data-muscle={muscle} class="muscle-filter flex items-center gap-3 w-full px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all text-left">
-										<span>•</span> {muscle}
+									<button data-muscle="all" class="muscle-filter active flex items-center gap-3 w-full px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all text-left">
+										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+										All Muscles
 									</button>
 								</li>
-							))}
-						</ul>
+								{muscleGroups.map((muscle) => (
+									<li>
+										<button data-muscle={muscle} class="muscle-filter flex items-center gap-3 w-full px-4 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all text-left">
+											<span class="w-1.5 h-1.5 rounded-full bg-current"></span> {muscle}
+										</button>
+									</li>
+								))}
+							</ul>
+						</details>
 
 						<div class="mt-8 p-4 rounded-2xl bg-white/10">
 							<p class="text-white/60 text-sm">
@@ -115,7 +124,7 @@ const muscleGroups = [...new Set(exercises.flatMap(e => e.data.muscleGroups))].s
 							>
 								<article class="glass-card rounded-3xl p-6 h-full hover:scale-[1.02] hover:bg-white/30 dark:hover:bg-white/15 transition-all duration-300">
 									<div class="flex items-start justify-between mb-4">
-										<span class="text-3xl">{categoryIcons[exercise.data.category]}</span>
+										<Image src={exercise.data.icon} alt={exercise.data.name} class="w-12 h-12" />
 										<span class={`px-3 py-1 rounded-full text-xs font-medium ${difficultyColors[exercise.data.difficulty]}`}>
 											{exercise.data.difficulty}
 										</span>
@@ -253,6 +262,11 @@ const muscleGroups = [...new Set(exercises.flatMap(e => e.data.muscleGroups))].s
 			}
 			.animation-delay-4000 {
 				animation-delay: 4s;
+			}
+
+			/* Hide default details marker */
+			details summary::-webkit-details-marker {
+				display: none;
 			}
 		</style>
 	</body>

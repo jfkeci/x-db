@@ -5,6 +5,7 @@ category: 'Strength'
 muscleGroups: ['Quadriceps', 'Glutes', 'Hamstrings', 'Calves']
 difficulty: 'Beginner'
 equipment: []
+icon: '../../assets/exercises/lunges-icon.svg'
 ---
 
 Lunges are an excellent functional exercise that works each leg independently, helping to correct muscle imbalances and improve athletic performance.

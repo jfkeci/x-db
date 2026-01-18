@@ -5,6 +5,7 @@ category: 'Compound'
 muscleGroups: ['Chest', 'Shoulders', 'Triceps']
 difficulty: 'Intermediate'
 equipment: ['Barbell', 'Bench']
+icon: '../../assets/exercises/bench-press-icon.svg'
 ---
 
 The bench press is one of the most popular and effective exercises for building upper body strength and muscle mass.

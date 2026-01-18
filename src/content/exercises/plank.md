@@ -5,6 +5,7 @@ category: 'Core'
 muscleGroups: ['Abs', 'Obliques', 'Lower Back', 'Shoulders']
 difficulty: 'Beginner'
 equipment: []
+icon: '../../assets/exercises/plank-icon.svg'
 ---
 
 The plank is a fundamental core exercise that strengthens the entire midsection while also engaging the shoulders and glutes.
