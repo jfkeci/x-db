@@ -30,13 +30,20 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					Your ultimate exercise database. Discover, track, and crush your workouts.
 				</p>
 
-				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+				<div class="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
 					<a
 						href={`${import.meta.env.BASE_URL}/exercises/`}
 						class="glass-card px-8 py-4 rounded-2xl text-white font-semibold text-lg hover:scale-105 hover:bg-white/30 transition-all duration-300 flex items-center justify-center gap-3"
 					>
 						<span class="text-2xl">💪</span>
 						Browse Exercises
+					</a>
+					<a
+						href={`${import.meta.env.BASE_URL}/configurator/`}
+						class="glass-card px-8 py-4 rounded-2xl text-white font-semibold text-lg hover:scale-105 hover:bg-white/30 transition-all duration-300 flex items-center justify-center gap-3"
+					>
+						<span class="text-2xl">📋</span>
+						Build Workout
 					</a>
 					<a
 						href={`${import.meta.env.BASE_URL}/blog/`}
@@ -56,7 +63,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 						x-db is a free, open-source exercise database designed to help you learn proper form and build effective workout routines. Whether you're a beginner or an experienced lifter, we've got you covered.
 					</p>
 
-					<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
 						<div class="text-center p-6">
 							<div class="text-4xl mb-4">🎯</div>
 							<h3 class="text-xl font-semibold text-white mb-2">Detailed Guides</h3>
@@ -65,12 +72,17 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 						<div class="text-center p-6">
 							<div class="text-4xl mb-4">📊</div>
 							<h3 class="text-xl font-semibold text-white mb-2">Filter & Search</h3>
-							<p class="text-white/70">Find exercises by muscle group, difficulty level, or equipment. Build the perfect routine for your goals.</p>
+							<p class="text-white/70">Find exercises by muscle group, difficulty level, or equipment to match your goals.</p>
+						</div>
+						<div class="text-center p-6">
+							<div class="text-4xl mb-4">📋</div>
+							<h3 class="text-xl font-semibold text-white mb-2">Workout Builder</h3>
+							<p class="text-white/70">Create custom workout plans with sets and reps, then download them as PDF to take to the gym.</p>
 						</div>
 						<div class="text-center p-6">
 							<div class="text-4xl mb-4">📚</div>
 							<h3 class="text-xl font-semibold text-white mb-2">Fitness Blog</h3>
-							<p class="text-white/70">Science-backed articles on training, nutrition, and recovery to help you get the most out of your workouts.</p>
+							<p class="text-white/70">Science-backed articles on training, nutrition, and recovery to maximize your results.</p>
 						</div>
 					</div>
 				</div>
