@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="30" fill="url(#gradient)" opacity="0.2"/>
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <!-- Cable bar at top -->
+  <path d="M16 12 L48 12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M32 12 L32 8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <!-- Cables -->
+  <path d="M20 12 L24 28" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M44 12 L40 28" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Head -->
+  <circle cx="32" cy="32" r="4" stroke="white" stroke-width="2.5" fill="none"/>
+  <!-- Body (seated) -->
+  <path d="M32 36 L32 48" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Arms pulling down -->
+  <path d="M24 28 L28 36" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M40 28 L36 36" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Legs on seat -->
+  <path d="M32 48 L24 56" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M32 48 L40 56" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Seat -->
+  <rect x="24" y="48" width="16" height="3" rx="1" stroke="white" stroke-width="1.5" fill="none"/>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="30" fill="url(#gradient)" opacity="0.2"/>
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="100%" style="stop-color:#eab308"/>
+    </linearGradient>
+  </defs>
+  <!-- Head -->
+  <circle cx="32" cy="20" r="5" stroke="white" stroke-width="2.5" fill="none"/>
+  <!-- Body (seated) -->
+  <path d="M32 25 L32 44" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Left arm pressing up with rotation -->
+  <path d="M32 30 L22 26 L18 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Right arm pressing up with rotation -->
+  <path d="M32 30 L42 26 L46 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Dumbbells at top -->
+  <rect x="14" y="8" width="8" height="6" rx="1" stroke="white" stroke-width="2" fill="none"/>
+  <rect x="42" y="8" width="8" height="6" rx="1" stroke="white" stroke-width="2" fill="none"/>
+  <!-- Rotation arrows -->
+  <path d="M24 20 C26 18 26 16 24 14" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+  <path d="M40 20 C38 18 38 16 40 14" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+  <!-- Bench/seat -->
+  <rect x="24" y="44" width="16" height="4" rx="1" stroke="white" stroke-width="1.5" fill="none"/>
+  <!-- Legs -->
+  <path d="M28 48 L24 56" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M36 48 L40 56" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

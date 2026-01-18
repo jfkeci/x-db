@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="30" fill="url(#gradient)" opacity="0.2"/>
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#6366f1"/>
+    </linearGradient>
+  </defs>
+  <!-- Head -->
+  <circle cx="32" cy="12" r="5" stroke="white" stroke-width="2.5" fill="none"/>
+  <!-- Body -->
+  <path d="M32 17 L32 32" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Arms holding kettlebell/dumbbell at chest -->
+  <path d="M32 24 L26 28 L26 32" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M32 24 L38 28 L38 32" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Kettlebell/Dumbbell at chest -->
+  <rect x="26" y="28" width="12" height="8" rx="2" stroke="white" stroke-width="2" fill="none"/>
+  <!-- Legs in squat position -->
+  <path d="M32 32 L22 42 L20 54" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M32 32 L42 42 L44 54" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Feet -->
+  <path d="M20 54 L16 56" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <path d="M44 54 L48 56" stroke="white" stroke-width="2" stroke-linecap="round"/>
+</svg>

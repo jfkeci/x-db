@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="30" fill="url(#gradient)" opacity="0.2"/>
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed"/>
+      <stop offset="100%" style="stop-color:#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <!-- Bench -->
+  <rect x="16" y="38" width="32" height="4" rx="2" stroke="white" stroke-width="2" fill="none"/>
+  <path d="M20 42 L20 50" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <path d="M44 42 L44 50" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <!-- Person lying down -->
+  <circle cx="18" cy="32" r="4" stroke="white" stroke-width="2" fill="none"/>
+  <path d="M22 34 L44 34" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <!-- Arms holding barbell -->
+  <path d="M28 34 L28 22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <path d="M38 34 L38 22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <!-- Barbell -->
+  <path d="M8 22 L56 22" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="8" y="18" width="6" height="8" rx="1" stroke="white" stroke-width="2" fill="none"/>
+  <rect x="50" y="18" width="6" height="8" rx="1" stroke="white" stroke-width="2" fill="none"/>
+</svg>

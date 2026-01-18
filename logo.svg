@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <!-- Dumbbell icon -->
+  <rect x="8" y="26" width="44" height="8" rx="2" />
+
+  <!-- Left weight plates -->
+  <ellipse cx="12" cy="30" rx="8" ry="18" />
+  <ellipse cx="12" cy="30" rx="5" ry="12" opacity="0.6" />
+
+  <!-- Right weight plates -->
+  <ellipse cx="48" cy="30" rx="8" ry="18" />
+  <ellipse cx="48" cy="30" rx="5" ry="12" opacity="0.6" />
+
+  <!-- Database lines -->
+  <path d="M4 24 h16 M4 30 h16 M4 36 h16" stroke-width="1.2" opacity="0.4" />
+  <path d="M40 24 h16 M40 30 h16 M40 36 h16" stroke-width="1.2" opacity="0.4" />
+
+  <!-- Text: x-db -->
+  <text x="68" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="700" letter-spacing="-1">x-db</text>
+
+  <style>
+    rect, ellipse { fill: #000; }
+    path { stroke: #fff; }
+    text { fill: #000; }
+    @media (prefers-color-scheme: dark) {
+      rect, ellipse { fill: #fff; }
+      path { stroke: #000; }
+      text { fill: #fff; }
+    }
+  </style>
+</svg>

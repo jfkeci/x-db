@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!-- Dumbbell bar -->
+  <rect x="24" y="58" width="80" height="12" rx="2" />
+
+  <!-- Left weight plates (database-style stacked) -->
+  <ellipse cx="28" cy="64" rx="12" ry="28" />
+  <ellipse cx="28" cy="64" rx="8" ry="20" opacity="0.6" />
+  <ellipse cx="28" cy="64" rx="4" ry="12" opacity="0.3" />
+
+  <!-- Right weight plates (database-style stacked) -->
+  <ellipse cx="100" cy="64" rx="12" ry="28" />
+  <ellipse cx="100" cy="64" rx="8" ry="20" opacity="0.6" />
+  <ellipse cx="100" cy="64" rx="4" ry="12" opacity="0.3" />
+
+  <!-- Database lines on weights -->
+  <path d="M16 54 h24 M16 64 h24 M16 74 h24" stroke-width="1.5" opacity="0.4" />
+  <path d="M88 54 h24 M88 64 h24 M88 74 h24" stroke-width="1.5" opacity="0.4" />
+
+  <style>
+    rect, ellipse { fill: #000; }
+    path { stroke: #fff; }
+    @media (prefers-color-scheme: dark) {
+      rect, ellipse { fill: #fff; }
+      path { stroke: #000; }
+    }
+  </style>
+</svg>
